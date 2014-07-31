@@ -1,7 +1,5 @@
 package javacodes;
 
-import java.util.Date;
-
 public class FixedRateGuesser implements ColumnGuesser {
 	String regexRate = "[0-9]{0,2}\\.[0-9]+%?";
 	
