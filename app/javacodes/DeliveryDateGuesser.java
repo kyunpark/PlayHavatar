@@ -1,6 +1,11 @@
 package javacodes;
 
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class DeliveryDateGuesser implements ColumnGuesser {
 	String regexDates = "((\\d){1,4}-(\\d){1,4}-(\\d){1,4})|((\\d){1,4}/(\\d){1,4}/(\\d){1,4})";
@@ -30,11 +35,27 @@ public class DeliveryDateGuesser implements ColumnGuesser {
 	}
 
 	@Override
-	public String guessColumn() {
+	public String guessColumn(List<Object> row) {
+		// Find all the date columns
+
+		
+		Collection<Date> dates = dateColumns.values();
+		
+		Date max = null;
+		
+		for (Date date : dates) {
+			if(max == null) {
+				max = date;
+				
+			} else if (date.after(max)) {
+				max = date;
+			}
+		}
+		
 		// Determine delivery date among selected dates
 		String mMax = "";
 		for (int j=0; j< dates.length; j++){
-		      if(mRate[j] > mMax)
+		      if(dates[j] > mMax)
 		    	  mMax = dates[j];
 		      else 
 		    	  mMax = dates[j+1];

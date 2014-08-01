@@ -1,5 +1,7 @@
 package javacodes;
 
+import java.util.List;
+
 public class ContractPriceGuesser implements ColumnGuesser {
 
 	@Override
@@ -9,7 +11,7 @@ public class ContractPriceGuesser implements ColumnGuesser {
 	}
 
 	@Override
-	public String guessColumn() {
+	public String guessColumn(List<Object> row) {
 		// Determine Contract Price among selected numbers
 		return null;
 	}
