@@ -1,11 +1,9 @@
 package javacodes;
 
 public class FloatingRateGuesser implements ColumnGuesser {
+		String regexRate = "[0-9]{0,2}\\.[0-9]+%?";
 
-	@Override
-	public void getVal2Compare() {
-		// Select rate columns to be compared
-		public String getVal2Compare() {
+		public String[] getVal2Compare() {
 			// Select rate columns to be compared
 	   	  
 	   	  	HTable table = new HTable(config, "duco_test");		    	  
@@ -21,27 +19,26 @@ public class FloatingRateGuesser implements ColumnGuesser {
 	   	  			strArray[i].trim();
 	   	  		}
 	   	  		
-	   	  		String mRate="";
+	   	  		String[] mRate=null;
 	   	  		for(int i=0; i< strArray.length; i++){
 	   	  			if (strArray[i].matches(regexRate)){
-	   	  				mRate = strArray[i];  
+	   	  				mRate[i] = strArray[i];  
 	   	  			}
 	   	  		}return mRate;
 	   	  	}
 		}
-	}
 
 	@Override
 	public String guessColumn() {
 		// Determine Floating Rate between selected rates
+		String mMin = "";
 		for (int j=0; j< mRate.length; j++){
-		      if(mRate[j] < mRate[j+1])
-		    	  return mRate[j];
+		      if(mRate[j] < mMin)
+		    	  mMin = mRate[j];
 		      else 
-		    	  return mRate[j+1];
+		    	  mMin = mMin;
 		}
-		
-		return null;
+		return mMin;
 	}
 
 }

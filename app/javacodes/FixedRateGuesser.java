@@ -4,7 +4,7 @@ public class FixedRateGuesser implements ColumnGuesser {
 	String regexRate = "[0-9]{0,2}\\.[0-9]+%?";
 	
 	@Override
-	public String getVal2Compare() {
+	public String[] getVal2Compare() {
 		// Select rate columns to be compared
    	  
    	  	HTable table = new HTable(config, "duco_test");		    	  
@@ -20,23 +20,25 @@ public class FixedRateGuesser implements ColumnGuesser {
    	  			strArray[i].trim();
    	  		}
    	  		
-   	  		String mRate="";
+   	  		String[] mRate=null;
    	  		for(int i=0; i< strArray.length; i++){
    	  			if (strArray[i].matches(regexRate)){
-   	  				mRate = strArray[i];  
+   	  				mRate[i] = strArray[i];  
    	  			}
    	  		}return mRate;
    	  	}
 	}
 
 	@Override
-	public int guessColumn(mRate) {
+	public String guessColumn() {
 		// Determine fixed rate between selected rates
+		String mMax = "";
 		for (int j=0; j< mRate.length; j++){
-		      if(mRate[j] > mRate[j+1])
-		    	  return mRate[j];
+		      if(mRate[j] > mMax)
+		    	  mMax = mRate[j];
 		      else 
-		    	  return mRate[j+1];
+		    	  mMax = mMax;
 		}
+		return mMax
 	}
 }
