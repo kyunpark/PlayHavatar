@@ -11,23 +11,28 @@ public class RowParser {
 		List<Object> parsedRow = new ArrayList<>();
 		String[]  cells = row.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); 
 		String regexDates = "((\\d){1,4}-(\\d){1,4}-(\\d){1,4}) | ((\\d){1,4}/(\\d){1,4}/(\\d){1,4} | ((\\d){1,4}.(\\d){1,4}.(\\d){1,4})";
+		Number number;
+		Object parsedValue;
 		
 		for (String string : cells) {
-			Object parsedValue;
+
 			int i=0;
 			if (cells[i].matches(regexDates)) {
 				// turn it into a date
 				SimpleDateFormat dateFormat = new SimpleDateFormat(regexDates);
 				Date date = dateFormat.parse(cells[i]);
-				parsedValue = date;// whatever i do to make it into a date
-			} else if (cells[i].) {// matches a number)
-				parsedValue = //whatever I do to make into a numb er
+				parsedValue = date;
+				// whatever i do to make it into a date
+			} else if (cells[i].equals(number)) {
+				// matches a number
+				Number num = Float.valueOf(cells[i]);
+				parsedValue = num;
+				//whatever I do to make into a number
 			} else 
 				parsedValue = string;
 			}
 			parsedRow.add(parsedValue);
 		
-		}
 		
 		return new Row(parsedRow);
 	}
