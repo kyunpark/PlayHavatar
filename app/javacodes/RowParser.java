@@ -25,7 +25,7 @@ public class RowParser {
 				// whatever i do to make it into a date
 			} else if (cells[i].equals(number)) {
 				// matches a number
-				Number num = Float.valueOf(cells[i]);
+				Number num = Float.valueOf(cells[i]).floatValue();
 				parsedValue = num;
 				//whatever I do to make into a number
 			} else 
@@ -33,6 +33,7 @@ public class RowParser {
 			}
 			parsedRow.add(parsedValue);
 		
+	}
 		
 		return new Row(parsedRow);
 	}
