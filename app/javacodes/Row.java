@@ -32,5 +32,22 @@ public class Row {
 		dateColumns.get(3);
 		return dateColumns;
 	}
-	
+	public Map<Integer, Float> getAllNumberColumns() {
+		Map<Integer,Float> floatColumns = new HashMap<Integer,Float>();
+		for(int i = 0; i < data.size(); i++) {
+			if(data.get(i) instanceof Float) {
+				floatColumns.put(i, (Float)data.get(i));
+			}
+		}
+		return floatColumns;
+	}
+	public Map<Integer, String> getAllStringColumns() {
+		Map<Integer,String> stringColumns = new HashMap<Integer,String>();
+		for(int i = 0; i < data.size(); i++) {
+			if(data.get(i) instanceof String) {
+				stringColumns.put(i, (String)data.get(i));	
+			}
+		}
+		return stringColumns;
+	}	
 }
