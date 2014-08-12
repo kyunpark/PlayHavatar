@@ -7,16 +7,15 @@ import java.util.List;
 
 public class RowParser {
 
-	public List<Object> parseRow(String row) {
+	public Row parseRow(String row) {
 		List<Object> parsedRow = new ArrayList<>();
 		String[]  cells = row.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); 
 		String regexDates = "((\\d){1,4}-(\\d){1,4}-(\\d){1,4}) | ((\\d){1,4}/(\\d){1,4}/(\\d){1,4} | ((\\d){1,4}.(\\d){1,4}.(\\d){1,4})";
 		Number number;
-		Object parsedValue;
+		Object parsedValue = null;
 		
 		for (String string : cells) {
 
-			int i=0;
 			if (cells[i].matches(regexDates)) {
 				// turn it into a date
 				SimpleDateFormat dateFormat = new SimpleDateFormat(regexDates);
@@ -33,7 +32,7 @@ public class RowParser {
 			}
 			parsedRow.add(parsedValue);
 		
-	}
+	
 		
 		return new Row(parsedRow);
 	}
