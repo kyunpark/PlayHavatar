@@ -41,7 +41,7 @@ public class RowParser {
 				parsedRow.add(floatTemp);
 				//parsedValue = "2";//whatever I do to make into a numb er
 			} else if (string.matches(regexString)){
-				//parsedValue = string;
+				
 			    parsedRow.add(string);
 			}
 			else{
