@@ -9,3 +9,5 @@ public interface ColumnGuesser {
 	public String guessColumn(List<Object> row);
 
 }
+
+

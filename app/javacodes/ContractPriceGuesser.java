@@ -28,7 +28,7 @@ public class ContractPriceGuesser implements ColumnGuesser {
 		   	  	
 			    String ss;
 			  
-				//这里读取了第2行
+				
 		   	  	while((ss=reader.readLine()) != null && index<rowNumber)
 		   	  	{
 		   	  	 if(index == rowNumber -1){
@@ -64,7 +64,6 @@ public class ContractPriceGuesser implements ColumnGuesser {
 			
 	}
 
-	@Override
 	public String guessColumn(String[] row) {
 		// TODO Auto-generated method stub
 		String regexPrice = "(\"(\\d){1,3},(\\d){1,3},(\\d){1,3}\")|(\"(\\d){1,3},(\\d){1,3}\")";
