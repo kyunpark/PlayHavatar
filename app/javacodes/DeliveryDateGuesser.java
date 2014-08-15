@@ -63,14 +63,10 @@ public class DeliveryDateGuesser implements ColumnGuesser {
         for (Iterator<Map.Entry<Integer, Date>> it = set1.iterator(); it.hasNext();) {
             Map.Entry<Integer, Date> entry = (Map.Entry<Integer, Date>) it.next();
             System.out.println(entry.getKey() + "--->" + getDateFormat(entry.getValue(),"dd/MM/yyyy"));
-/*		    if(mMax<entry.getValue())
-		    {
-		         mMax = entry.getValue();
-		         columnOrder = entry.getKey();
-		    }*/
+
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(entry.getValue());
-            //calendar.set(Calendar.DATE,entry.getValue().getDate());
+
             //每月第3个周四，且为所有日期中最靠后的
             if((calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH)==3 && calendar.get(Calendar.DAY_OF_WEEK)==Calendar.THURSDAY) || count==0){
                  if(mMax.before(entry.getValue())){
