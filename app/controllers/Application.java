@@ -2,9 +2,10 @@ package controllers;
 
 import java.io.File;
 
-import javacodes.fileLoader;
 import play.*;
 import play.mvc.*;
+import play.mvc.Http.MultipartFormData;
+import play.mvc.Http.MultipartFormData.FilePart;
 import views.html.*;
 
 public class Application extends Controller {
@@ -13,21 +14,27 @@ public class Application extends Controller {
         return ok(index.render("Your new application is ready."));
     }
     
-    public static Result upload(String filename) {
+    public static Result upload() {
+        MultipartFormData body = request().body().asMultipartFormData();
+        FilePart file = body.getFile("testdata");
         
-        String path  = "/Users/kyun/Desktop"+filename;
-        
-        File file = new File(path);
-        
-        fileLoader loader = new fileLoader();
-        loader.load(file);
-       
-        
-        
-        return ok(index.render("Your data is uploaded to the database__"+filename));
+        if (file != null) {
+        	String fileName = file.getFilename();
+        	String contentType = file.getContentType();
+        	File file1 = file.getFile();
+        	return ok("File uploaded");
+        } else {
+        	flash("error", "Missing file");
+        	return redirect(routes.Application.index());
+        }
+
     }
+        
+        
+//        return ok(index.render("Your data is uploaded to the database__"+filename));
+
     
-    
+   
     /*SD1: write code 
     
     ST2:ASSUMES WE HAVE A FILE LOCALLY INSIDE FOLDER DATA/
