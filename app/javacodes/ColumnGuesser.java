@@ -1,11 +1,13 @@
 package javacodes;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public interface ColumnGuesser {
 	
 	public String[] getVal2Compare();
 	
-	public String guessColumn(List<Object> row);
+	  public Map<Integer,Set<String>> guessColumn(Row row);
+
 
 }
