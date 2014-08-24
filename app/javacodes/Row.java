@@ -22,7 +22,9 @@ public class Row {
 	}
 	
 	public Map<Integer, Date> getAllDateColumns() {
+		
 		Map<Integer,Date> dateColumns = new HashMap<Integer, Date>();
+		
 		for(int i = 0; i < data.size(); i++) {
 			if(data.get(i) instanceof Date) {
 				dateColumns.put(i, (Date)data.get(i));			
@@ -32,7 +34,9 @@ public class Row {
 	}
 	
 	public Map<Integer, Float> getAllFloatColumns() {
+		
 		Map<Integer,Float> floatColumns = new HashMap<Integer, Float>();
+		
 		for(int i = 0; i < data.size(); i++) {
 			if(data.get(i) instanceof Float) {
 				floatColumns.put(i, (Float)data.get(i));
@@ -42,7 +46,9 @@ public class Row {
 	}
 	
 	public Map<Integer, Integer> getAllIntColumns() {
+		
 		Map<Integer,Integer> intColumns = new HashMap<Integer, Integer>();
+		
 		for(int i = 0; i < data.size(); i++) {
 			if(data.get(i) instanceof Integer) {
 				intColumns.put(i, (Integer)data.get(i));
@@ -52,7 +58,9 @@ public class Row {
 	}
 	
 	public Map<Integer, String> getAllStringColumns() {
+		
 		Map<Integer,String> stringColumns = new HashMap<Integer, String>();
+		
 		for(int i = 0; i < data.size(); i++) {
 			if(data.get(i) instanceof String) {
 				stringColumns.put(i, (String)data.get(i));	

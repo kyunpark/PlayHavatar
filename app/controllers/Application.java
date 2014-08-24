@@ -22,7 +22,7 @@ public class Application extends Controller {
         	String fileName = file.getFilename();
         	String contentType = file.getContentType();
         	File file1 = file.getFile();
-        	return ok("File uploaded");
+        	return ok(fileName + "Uploaded");
         } else {
         	flash("error", "Missing file");
         	return redirect(routes.Application.index());

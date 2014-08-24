@@ -1,5 +1,7 @@
 package javacodes;
 
+import java.util.List;
+
 public class EffectiveDateGuesser implements ColumnGuesser {
 
 	@Override
@@ -8,10 +10,11 @@ public class EffectiveDateGuesser implements ColumnGuesser {
 		
 	}
 
+
+
 	@Override
-	public String guessColumn() {
-		// Determine effective date among selected dates
-		
+	public String guessColumn(List<Object> row) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	
