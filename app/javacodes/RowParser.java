@@ -32,12 +32,12 @@ public class RowParser {
 					
 					parsedValue = num;
 				}
-				if (isDouble(cell)) {
-					// matches a string with numeric type
-					Number num = Double.valueOf(cell);
-					
-					parsedValue = num;
-				}
+//				if (isDouble(cell)) {
+//					// matches a string with numeric type
+//					Number num = Double.valueOf(cell);
+//					
+//					parsedValue = num;
+//				}
 				if (isFloat(cell)) {
 					// matches a string with numeric type
 					Number num = Float.valueOf(cell);
@@ -45,7 +45,6 @@ public class RowParser {
 					parsedValue = num;
 				}
 
-				// whatever I do to make into a number
 			 else {
 				
 				parsedValue = cell;
