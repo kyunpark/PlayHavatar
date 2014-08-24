@@ -65,7 +65,11 @@ public class ContractPriceGuesser implements ColumnGuesser {
         }
         System.out.println("Contract Price is the "+columnOrder+"th Column data of the row.");
         System.out.println("with value="+String.valueOf(mMax)+".");
-        return String.valueOf(mMax);
+        Map<Integer,Set<String>> guessedMap = new HashMap<Integer,Set<String>>();
+        Set<String>  set1=new HashSet<String>();
+        set1.add(String.valueOf(mMax));
+        guessedMap.put(columnOrder+1,set1);
+        return guessedMap;
 	}
 
 	@Override
