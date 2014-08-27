@@ -1,7 +1,15 @@
 package javacodes;
 
-public class FloatingRateGuesser implements ColumnGuesser {
-		String regexRate = "[0-9]{0,2}\\.[0-9]+%?";
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+public class FloatingRateGuesser {
+
+	RowParser parsedRow;
+	Row numberOfColumns;
 
 		public String[] getVal2Compare() {
 			// Select rate columns to be compared
@@ -28,17 +36,19 @@ public class FloatingRateGuesser implements ColumnGuesser {
 	   	  	}
 		}
 
-	@Override
-	public String guessColumn() {
-		// Determine Floating Rate between selected rates
-		String mMin = "";
-		for (int j=0; j< mRate.length; j++){
-		      if(mRate[j] < mMin)
-		    	  mMin = mRate[j];
-		      else 
-		    	  mMin = mMin;
+	public Map<Integer, String> guessColumn(Row parsedRow) {
+		
+		Map<Integer, Float> map = parsedRow.getAllFloatColumns();
+		Set<Map.Entry<Integer, Float>> set = map.entrySet();
+		//Collection of guesses after guessing
+		Map<Integer, String> cg = new HashMap<Integer, String>();
+		
+		for (Iterator<Map.Entry<Integer, Float>> it = set.iterator(); it.hasNext();) {
+			Map.Entry<Integer, Float> entry = (Map.Entry<Integer, Float>) it.next();
+			//Compare float columns with regex to find interest rates
 		}
-		return mMin;
+		return cg;
+		
 	}
 
 }

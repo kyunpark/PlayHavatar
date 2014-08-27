@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class TradeDateGuesser implements ColumnGuesser {
+public class TradeDateGuesser {
 
 
 	RowParser parsedRow;
@@ -27,7 +27,7 @@ public class TradeDateGuesser implements ColumnGuesser {
 		
 	}
 
-	public String guessColumn(Row parsedRow) {
+	public Map<Integer, String> guessColumn(Row parsedRow) {
 		// TODO Auto-generated method stub
 		String TD;
 
