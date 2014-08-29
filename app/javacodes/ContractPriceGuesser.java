@@ -4,55 +4,57 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class ContractPriceGuesser implements ColumnGuesser {
+public class ContractPriceGuesser {
 
-	@Override
-	public Row getVal2Compare(){
 
-			// TODO Auto-generated method stub
-			// Select Date columns to be compared
-			//HTable table = new HTable(config, "duco_test");		    	  
-			String filepath="D:\\javaProgram\\HbaseClient\\data\\2_rows_future.csv";
-			  int index=0;
-			  int rowNumber=2;
-			  BufferedReader reader; 
-			  Row row = new Row(null);
-			try {
-				reader = new BufferedReader(new FileReader(filepath));
-			    String ss;  
-				//这里读取了第2行
-		   	  	while((ss=reader.readLine()) != null && index<rowNumber)
-		   	  	{
-		   	  	 if(index == rowNumber -1){
-		   	  		 System.out.println(ss);
-		   	  		 row=new RowParser().parseRow(ss);
-		   	  		 //return new RowParser().parseRow(ss);
-		   	  	 }
-		   	  	 index++;
-		   	  	}
-				
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return row;
-			
-	}
-
-	@Override
-	public String guessColumn(Row row) {
+//	public Row getVal2Compare(){
+//
+//			// TODO Auto-generated method stub
+//			// Select Date columns to be compared
+//			//HTable table = new HTable(config, "duco_test");		    	  
+//			String filepath="D:\\javaProgram\\HbaseClient\\data\\2_rows_future.csv";
+//			  int index=0;
+//			  int rowNumber=2;
+//			  BufferedReader reader; 
+//			  Row row = new Row(null);
+//			try {
+//				reader = new BufferedReader(new FileReader(filepath));
+//			    String ss;  
+//				//这里读取了第2行
+//		   	  	while((ss=reader.readLine()) != null && index<rowNumber)
+//		   	  	{
+//		   	  	 if(index == rowNumber -1){
+//		   	  		 System.out.println(ss);
+//		   	  		 row=new RowParser().parseRow(ss);
+//		   	  		 //return new RowParser().parseRow(ss);
+//		   	  	 }
+//		   	  	 index++;
+//		   	  	}
+//				
+//			} catch (FileNotFoundException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			return row;
+//			
+//	}
+	RowParser parsedRow;
+	Row getAllNumberColumns;
+	
+	public Map<Integer, String> guessColumn(Row parsedRow) {
 		System.out.println("the Numbers in the row:");
 		float mMax=0;
 		Integer columnOrder=0;
-		Map<Integer,Float> map=row.getAllNumberColumns();
+		Map<Integer,Float> map = parsedRow.getAllFloatColumns();
 		Set<Map.Entry<Integer, Float>> set = map.entrySet();
         for (Iterator<Map.Entry<Integer, Float>> it = set.iterator(); it.hasNext();) {
             Map.Entry<Integer, Float> entry = (Map.Entry<Integer, Float>) it.next();
@@ -72,8 +74,4 @@ public class ContractPriceGuesser implements ColumnGuesser {
         return guessedMap;
 	}
 
-	@Override
-	public String guessColumn(List<Object> row) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+}

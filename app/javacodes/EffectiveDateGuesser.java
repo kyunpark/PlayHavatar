@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class EffectiveDateGuesser {
 
-
+	RowParser parsedRow;
 	
 	
 	public Map<Integer, String> guessColumn(Row parsedRow) {
@@ -30,18 +30,19 @@ public class EffectiveDateGuesser {
 				
 				if (d1.before(d2) && d2.before(d3) || d3.before(d2) && d2.before(d1)) {
 					//Annotate d2 column with ED into Map<> cg
+					cg.put(key, ED);
 				}
 				else if (d2.before(d3) && d3.before(d1) || d1.before(d3) && d3.before(d2)) {
 					//Annotate d3 column with ED into Map<> cg
+					cg.put(key, ED);
 				}
 				else {
 					//Annotate d1 column with ED into Map<> cg
+					cg.put(key, ED);
 				}
-		
-		
-	
+				
+			}	
 		}
-		return null;
+		return cg;
 	}
-
 }

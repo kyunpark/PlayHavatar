@@ -14,22 +14,10 @@ public class TradeDateGuesser {
 	RowParser parsedRow;
 	Row numberOfColumns;
 	
-	@Override
-	public String[] getVal2Compare() {
-		// Select Date columns to be compared
-		
-		Date d1 = new Date();
-		Date d2 = new Date();
-		Date d3 = new Date();
-		
-		System.out.println(d1+","+d2+","+d3);
-		return null;
-		
-	}
 
 	public Map<Integer, String> guessColumn(Row parsedRow) {
-		// TODO Auto-generated method stub
-		String TD;
+		
+		final String TD = "Trade Date";
 
 		Map<Integer, Date> map = parsedRow.getAllDateColumns();
 		Set<Map.Entry<Integer, Date>> set = map.entrySet();
@@ -47,9 +35,11 @@ public class TradeDateGuesser {
 				
 				if (d1.before(d2)) {
 					//Annotate d1 column with TD into Map<> cg
+					cg.put(entry.getKey(), TD);
 				}
 				else {
 					//Annotate d2 column with TD into Map<> cg
+					cg.put(entry.getKey(), TD);
 				}
 				
 			}
@@ -61,17 +51,21 @@ public class TradeDateGuesser {
 				if (d1.before(d2)) {
 					if (d1.before(d3)) {
 						//Annotate d1 column with TD into Map<> cg
+						cg.put(entry.getKey(), TD);
 					}
 					else {
 						//Annotate d3 column with TD into Map<> cg
+						cg.put(entry.getKey(), TD);
 						}
 					}
 				else {
 					if (d2.before(d3)) {
 						//Annotate d2 column with TD into Map<> cg
+						cg.put(entry.getKey(), TD);
 					}
 					else {
 						//Annotate d3 column with TD into Map<> cg
+						cg.put(entry.getKey(), TD);
 					}
 				}
 			}
@@ -81,17 +75,8 @@ public class TradeDateGuesser {
 		Map<Integer, String> guesses;
 		
 		
-		return null;
+		return cg;
 	}
 	
-	//des,asc; quicksort
-//	public void quicksort(TreeMap<Integer, Date> data,int start, int end, int index){
-//		
-//	}
-//	
-//	public void test(){
-//		Date date = new Date();
-//		date.
-//	}
 
 }

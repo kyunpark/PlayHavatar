@@ -11,30 +11,6 @@ public class FloatingRateGuesser {
 	RowParser parsedRow;
 	Row numberOfColumns;
 
-		public String[] getVal2Compare() {
-			// Select rate columns to be compared
-	   	  
-	   	  	HTable table = new HTable(config, "duco_test");		    	  
-	   	  
-	   	  	String[] strArray=null;
-		    String ss;
-		    int count =0;
-	   	  	while((ss=reader.readLine()) != null){
-	   	  		strArray= ss.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); 
-	   	  		//splitting-a-comma-separated-string-but-ignoring-commas-in-quotes
-	   		  
-	   	  		for(int i=0; i< strArray.length; i++){
-	   	  			strArray[i].trim();
-	   	  		}
-	   	  		
-	   	  		String[] mRate=null;
-	   	  		for(int i=0; i< strArray.length; i++){
-	   	  			if (strArray[i].matches(regexRate)){
-	   	  				mRate[i] = strArray[i];  
-	   	  			}
-	   	  		}return mRate;
-	   	  	}
-		}
 
 	public Map<Integer, String> guessColumn(Row parsedRow) {
 		
