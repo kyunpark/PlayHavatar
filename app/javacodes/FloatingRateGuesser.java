@@ -1,6 +1,5 @@
 package javacodes;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -10,7 +9,7 @@ public class FloatingRateGuesser {
 
 	RowParser parsedRow;
 	Row numberOfColumns;
-
+	String regexRate = "[0-9]{1,2}\\.[0-9]{1,2}+%?";
 
 	public Map<Integer, String> guessColumn(Row parsedRow) {
 		

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class RowParser {
 
-
+	String regexRate = "[0-9]{1,2}\\.[0-9]{1,2}+%?";
 	String regexDates = "((\\d){1,4}-(\\d){1,4}-(\\d){1,4}) | ((\\d){1,4}/(\\d){1,4}/(\\d){1,4} | ((\\d){1,4}.(\\d){1,4}.(\\d){1,4})";
 	
 	public Row parseRow(String row) throws ParseException {
@@ -18,18 +18,18 @@ public class RowParser {
 
 
 		for (String cell : cells) {
-//			if (cell.matches(regexDates)) {
-//				// turn it into a date
-//				SimpleDateFormat dateFormat = new SimpleDateFormat(regexDates);
-//				
-//				Date date = dateFormat.parse(cell);
-//				
-//				parsedValue = date;
-//			}
-				if (isDate(cell)) {
-					Date date = dateFormat.parse(cell);
-					//??
-				}
+			if (cell.matches(regexDates)) {
+				// turn it into a date
+				SimpleDateFormat dateFormat = new SimpleDateFormat(regexDates);
+				
+				Date date = dateFormat.parse(cell);
+				
+				parsedValue = date;
+			}
+//				if (isDate(cell)) {
+//					Date date = dateFormat.parse(cell);
+//					//??
+//				}
 			
 				if (isInt(cell)) {
 					// matches a string with numeric type
@@ -48,6 +48,12 @@ public class RowParser {
 					Number num = Float.valueOf(cell);
 					
 					parsedValue = num;
+				}
+				if (cell.matches(regexRate)) {
+					float f = Float.parseFloat(cell);
+					Number rate = Float.valueOf(f);
+					
+					parsedValue = rate;
 				}
 
 			 else {

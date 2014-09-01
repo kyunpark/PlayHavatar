@@ -1,62 +1,39 @@
 package javacodes;
 
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.hadoop.hbase.client.HTable;
 
-public class FixedRateGuesser implements ColumnGuesser {
+
+public class FixedRateGuesser {
 	
-	String regexRate = "[0-9]{0,2}\\.[0-9]+%?";
-  	String mRate="";
-	private BufferedReader reader = null;
-	org.apache.hadoop.conf.Configuration config = HBaseConfiguration.create();
-	
-	@Override
-	public String getVal2Compare() {
-		// Select rate columns to be compared
-   	  
-   	  	String[] strArray = null;
-	    String ss;
-	    int count = 0;
+	RowParser parsedRow;
+	Row getAllFloatColumns;
+	String regexRate = "[0-9]{1,2}\\.[0-9]{1,2}+%?";
 
-   	  	while((ss = reader.readLine()) != null)
-   	  	{
-   	  		strArray = ss.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); 
-   	  		//splitting-a-comma-separated-string-but-ignoring-commas-in-quotes
-   		  
-   	  		for(int i = 0; i < strArray.length; i++)
-   	  		{
-   	  			strArray[i].trim();
-   	  		}
-   	  		
-   	  		for(int i = 0; i < strArray.length; i++)
-   	  		{
-   	  			if (strArray[i].matches(regexRate))
-   	  			{
-   	  				mRate = strArray[i];  
-   	  			}
-   	  		}
-   	  		return mRate;
-   	  	}
-	}
 
-	@Override
-	public String guessColumn() {
-		// Determine fixed rate between selected rates
-		for (int j=0; j< mRate.length; j++){
-		      if(mRate[j] > mRate[j+1])
-		    	  return mRate[j];
-		      else 
-		    	  return mRate[j+1];
-		}
-	}
-
-	@Override
-	public String guessColumn(List<Object> row) {
+	public Map<Integer, String> guessColumn(Row parsedRow) {
 		// TODO Auto-generated method stub
+		Map<Integer, Float> map = parsedRow.getAllFloatColumns();
+		Set<Map.Entry<Integer, Float>> set = map.entrySet();
+		//Collection of guesses after guessing
+		Map<Integer, String> cg = new HashMap<Integer, String>();
+		
+		for (Iterator<Map.Entry<Integer, Float>> it = set.iterator(); it.hasNext();) {
+			Map.Entry<Integer, Float> entry = (Map.Entry<Integer, Float>) it.next();
+				if (entry.getValue().toString().equals(regexRate)) {
+					//Assuming there are only two columns of rates
+					Float r1 = entry.getValue();
+					Float r2 = entry.getValue();
+					
+					if (r1.compare(r1, r2))
+				}
+		
 		return null;
 	}
 }
